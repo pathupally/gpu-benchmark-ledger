@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://compute-futures.local/schemas/benchmark-observation.schema.json",
+  "title": "Benchmark observation",
+  "description": "A source-linked, methodology-versioned observation of a compute price benchmark.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "observation_id",
+    "vendor",
+    "benchmark_id",
+    "ticker",
+    "observation_date",
+    "value",
+    "unit",
+    "value_precision",
+    "dimensions",
+    "methodology_version",
+    "restatement_status",
+    "source_id",
+    "source_record_locator",
+    "retrieved_on"
+  ],
+  "properties": {
+    "observation_id": {"type": "string", "minLength": 1},
+    "vendor": {"enum": ["ornn", "silicon_data"]},
+    "benchmark_id": {"type": "string", "minLength": 1},
+    "ticker": {"type": ["string", "null"]},
+    "observation_date": {"type": "string", "format": "date"},
+    "value": {"type": "number", "exclusiveMinimum": 0},
+    "unit": {"const": "USD_per_GPU_hour"},
+    "value_precision": {"type": "integer", "minimum": 0, "maximum": 8},
+    "dimensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "gpu_model",
+        "memory_gb",
+        "form_factor",
+        "tier",
+        "region",
+        "rental_type",
+        "observation_window",
+        "contributor_coverage"
+      ],
+      "properties": {
+        "gpu_model": {"type": "string", "minLength": 1},
+        "memory_gb": {"type": ["integer", "null"], "minimum": 1},
+        "form_factor": {"type": ["string", "null"]},
+        "tier": {"type": ["string", "null"]},
+        "region": {"type": ["string", "null"]},
+        "rental_type": {"type": ["string", "null"]},
+        "observation_window": {"type": ["string", "null"]},
+        "contributor_coverage": {"type": ["string", "null"]}
+      }
+    },
+    "methodology_version": {"type": "string", "minLength": 1},
+    "restatement_status": {"enum": ["as_published", "restated", "unknown"]},
+    "source_id": {"type": "string", "minLength": 1},
+    "source_record_locator": {"type": "string", "minLength": 1},
+    "retrieved_on": {"type": "string", "format": "date"},
+    "notes": {"type": "string"}
+  }
+}
+

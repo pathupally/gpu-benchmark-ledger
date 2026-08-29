@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="A vintage-preserving comparison of Ornn and Silicon Data GPU price benchmarks.">
+  <title>Benchmark Ledger — One GPU, Two Settlement Prices</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="data.generated.js" defer></script>
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to analysis</a>
+
+  <header class="masthead">
+    <a class="wordmark" href="#top" aria-label="Benchmark Ledger home">
+      <svg class="wordmark-mark" viewBox="0 0 44 44" aria-hidden="true">
+        <path d="M7 8h30M7 22h30M7 36h30M14 4v36M30 4v36"/>
+        <circle cx="14" cy="22" r="4"/>
+        <circle cx="30" cy="8" r="4"/>
+      </svg>
+      <span>Benchmark<br>Ledger</span>
+    </a>
+    <nav class="masthead-nav" aria-label="Primary navigation">
+      <a href="#basis">Basis</a>
+      <a href="#coverage">Coverage</a>
+      <a href="#ledger">Break ledger</a>
+      <a href="#methods">Methods</a>
+    </nav>
+    <p class="issue-stamp"><span>Research issue</span> 01 / 2026</p>
+  </header>
+
+  <div id="top" class="market-strip" aria-label="Dataset status">
+    <span>As published</span>
+    <span id="asOfDate">As of —</span>
+    <span>USD per GPU-hour</span>
+    <span>No inferred history</span>
+  </div>
+
+  <main id="main-content">
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-kicker">
+        <span>Cross-benchmark surveillance</span>
+        <span class="rule"></span>
+        <span>Ornn / Silicon Data</span>
+      </div>
+      <div class="hero-grid">
+        <div>
+          <h1 id="page-title">One GPU.<br><em>Two settlement prices.</em></h1>
+          <p class="hero-deck">A versioned map of where compute benchmarks disagree—and which part of that gap the public record can actually explain.</p>
+        </div>
+        <aside class="hero-finding" aria-label="Primary finding">
+          <span class="finding-index">Finding 01</span>
+          <p>The sign flips.</p>
+          <p class="finding-copy">Ornn sits above Silicon Data for three GPU families and below it for A100. A single vendor markup cannot explain the cross-section.</p>
+          <dl class="hero-counts">
+            <div><dt>Compared</dt><dd id="matchedCount">—</dd></div>
+            <div><dt>Decision eligible</dt><dd id="eligibleCount">—</dd></div>
+          </dl>
+        </aside>
+      </div>
+    </section>
+
+    <section id="basis" class="analysis-section basis-section" aria-labelledby="basis-title">
+      <header class="section-heading">
+        <p class="section-index">01 — Matched basis</p>
+        <div>
+          <h2 id="basis-title">The disagreement is not one number.</h2>
+          <p>Raw basis is Ornn relative to Silicon Data. Thin lines show the counterfactual range from quantified, non-restated Silicon Data breaks; they are not confidence intervals.</p>
+        </div>
+        <a class="download-link" href="../data/generated/matched-basis.csv" download>Download table <span aria-hidden="true">↓</span></a>
+      </header>
+
+      <div class="basis-workbench">
+        <div class="basis-visual">
+          <div class="chart-legend" aria-hidden="true">
+            <span><i class="legend-dot"></i> Raw basis</span>
+            <span><i class="legend-band"></i> Published break range</span>
+            <span><i class="legend-zero"></i> Same price</span>
+          </div>
+          <figure>
+            <div id="basisChart" class="basis-chart" role="img" aria-label="Basis by GPU model"></div>
+            <figcaption>Percentage difference, calculated from the archived matched-date values. Approximate comparisons remain visible but are excluded from decision use.</figcaption>
+          </figure>
+        </div>
+
+        <aside class="basis-inspector" aria-labelledby="inspector-title">
+          <div id="gpuTabs" class="gpu-tabs" role="tablist" aria-label="Choose a GPU comparison"></div>
+          <div id="pairDetail" aria-live="polite"></div>
+        </aside>
+      </div>
+
+      <div class="estimate-gates" aria-label="Unavailable estimates">
+        <article>
+          <div>
+            <p class="gate-label">Rolling correlation</p>
+            <p class="gate-value">Not estimated</p>
+          </div>
+          <div class="gate-meter" aria-hidden="true"><span id="correlationProgress"></span></div>
+          <p id="correlationReason">Waiting for shared daily returns.</p>
+        </article>
+        <article>
+          <div>
+            <p class="gate-label">Hedge ratio</p>
+            <p class="gate-value">Not estimated</p>
+          </div>
+          <div class="gate-meter" aria-hidden="true"><span id="hedgeProgress"></span></div>
+          <p id="hedgeReason">Waiting for shared daily returns.</p>
+        </article>
+        <article class="gate-warning">
+          <div>
+            <p class="gate-label">Hedge effectiveness</p>
+            <p class="gate-value">Out of scope</p>
+          </div>
+          <p id="effectivenessReason">A participant cash-price panel is required.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="coverage" class="analysis-section coverage-section" aria-labelledby="coverage-title">
+      <header class="section-heading">
+        <p class="section-index">02 — Deliverable coverage</p>
+        <div>
+          <h2 id="coverage-title">Unknown is not a match.</h2>
+          <p>Each cell compares what the archived public record says about the deliverable. Missing metadata stays visible instead of being silently imputed.</p>
+        </div>
+      </header>
+      <div class="coverage-key" aria-label="Coverage status key">
+        <span><i class="status-mark match"></i> Match</span>
+        <span><i class="status-mark mismatch"></i> Mismatch</span>
+        <span><i class="status-mark unknown"></i> Unknown</span>
+      </div>
+      <div class="table-shell">
+        <table class="coverage-table">
+          <caption>Specification alignment by GPU and dimension</caption>
+          <thead id="coverageHead"></thead>
+          <tbody id="coverageBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="ledger" class="analysis-section ledger-section" aria-labelledby="ledger-title">
+      <header class="section-heading">
+        <p class="section-index">03 — Vintage ledger</p>
+        <div>
+          <h2 id="ledger-title">History has an edit trail.</h2>
+          <p>Silicon Data publishes dated discontinuities and restatement flags. The archived Ornn evidence has no comparable dated register.</p>
+        </div>
+      </header>
+      <div class="ledger-toolbar" role="group" aria-label="Filter methodology events">
+        <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">All events</button>
+        <button class="filter-button" type="button" data-filter="quantified" aria-pressed="false">Quantified impact</button>
+        <button class="filter-button" type="button" data-filter="unrestated" aria-pressed="false">Not restated</button>
+        <button class="filter-button" type="button" data-filter="ornn" aria-pressed="false">Ornn audit status</button>
+      </div>
+      <ol id="eventLedger" class="event-ledger"></ol>
+    </section>
+
+    <section id="methods" class="analysis-section methods-section" aria-labelledby="methods-title">
+      <header class="section-heading">
+        <p class="section-index">04 — Methodology vintages</p>
+        <div>
+          <h2 id="methods-title">The number travels with its method.</h2>
+          <p>Every observation points to the methodology version and archived source hash in force for that record.</p>
+        </div>
+      </header>
+      <div id="methodologyGrid" class="methodology-grid"></div>
+      <details class="formula-note">
+        <summary>Calculation note</summary>
+        <div>
+          <p><strong>Raw log basis</strong> = log(Ornn) − log(Silicon Data).</p>
+          <p>For a published non-restated break impact <em>p</em>, the counterfactual log basis is raw basis + log(1 + <em>p</em>). Low and high endpoints are carried separately. No midpoint is substituted.</p>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <p>Benchmark Ledger / Research artifact 01</p>
+    <p>Measurement infrastructure, not a trading recommendation.</p>
+    <a href="../docs/paper/one-gpu-two-settlement-prices.md">Read the research note</a>
+  </footer>
+
+  <noscript><p class="noscript">This dashboard needs JavaScript to render the generated analysis. The CSV and JSON artifacts remain available under <code>data/generated</code>.</p></noscript>
+</body>
+</html>

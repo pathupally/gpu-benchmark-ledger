@@ -1,0 +1,5 @@
+observation_date,gpu_model,ornn_benchmark_id,ornn_value,silicon_data_benchmark_id,silicon_data_value,raw_log_basis,raw_basis_pct,break_adjusted_low_pct,break_adjusted_high_pct,sensitivity_status,comparison_class,confidence_grade,analysis_eligible
+2026-08-29,A100,ORNN-A100-SXM4,1.21,SDA100RT,1.61,-0.28561382,-24.8447205,-24.8447205,-24.8447205,unbounded,approximate,D,false
+2026-08-29,B200,ORNN-B200,6.01,SDB200RT,5.58,0.07423597,7.70609319,1.2437276,7.70609319,quantified,mapped,C,true
+2026-08-29,H100,ORNN-H100-SXM,2.93,SDH100RT,2.65,0.10044278,10.56603774,2.82641509,7.2490566,partial_unbounded,mapped,C,true
+2026-08-29,H200,ORNN-H200,4.49,SD-H200-NEOCLOUD,3.25,0.32319771,38.15384615,38.15384615,38.15384615,no_quantified_nonrestated_break,approximate,D,false

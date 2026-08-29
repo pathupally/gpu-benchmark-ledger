@@ -1,0 +1,142 @@
+{
+  "schema_version": "1.0.0",
+  "methodologies": [
+    {
+      "methodology_version": "ornn-public-2026-08-29",
+      "vendor": "ornn",
+      "effective_from": null,
+      "effective_to": null,
+      "status": "current_as_observed",
+      "price_input": "executed_transactions",
+      "aggregation": "volume_weighted_winsorized_mean",
+      "observation_window": "rolling_one_hour",
+      "rental_type": "on_demand",
+      "provider_weighting": null,
+      "dated_break_register": false,
+      "source_ids": ["ornn-h100-2026-08-29"],
+      "notes": "Percentile thresholds and contributor coverage are not disclosed in the archived evidence."
+    },
+    {
+      "methodology_version": "sd-current-2025-12-04",
+      "vendor": "silicon_data",
+      "effective_from": "2025-12-04",
+      "effective_to": null,
+      "status": "current_as_observed",
+      "price_input": "provider_prices_and_benchmark_equivalent_contracts",
+      "aggregation": null,
+      "observation_window": null,
+      "rental_type": "blended",
+      "provider_weighting": null,
+      "dated_break_register": true,
+      "source_ids": ["silicondata-portal-2026-08-29", "silicondata-break-register-2026-08-29"],
+      "notes": "The public break register is dated, but the full benchmark-equivalent contract definition and provider weighting function are not present in the archived evidence."
+    }
+  ],
+  "events": [
+    {
+      "event_id": "sd-prose-2025-03-01",
+      "vendor": "silicon_data",
+      "announced": null,
+      "effective": "2025-03-01",
+      "event_type": "acknowledged_jump",
+      "affected_benchmarks": [],
+      "impacts": [],
+      "impact_status": "unquantified",
+      "restated": false,
+      "history_start": null,
+      "source_id": "silicondata-break-register-2026-08-29",
+      "notes": "Rapid expansion of provider coverage; no numerical impact estimate was published."
+    },
+    {
+      "event_id": "sd-251203-1",
+      "vendor": "silicon_data",
+      "announced": "2025-12-03",
+      "effective": "2025-12-04",
+      "event_type": "methodology_change",
+      "affected_benchmarks": ["SDA100RT", "SDH100RT"],
+      "impacts": [
+        {"benchmark_id": "SDA100RT", "low_pct": 35.0, "high_pct": 40.0},
+        {"benchmark_id": "SDH100RT", "low_pct": -6.0, "high_pct": -4.0}
+      ],
+      "impact_status": "quantified_range",
+      "restated": true,
+      "history_start": "2024-09-01",
+      "source_id": "silicondata-break-register-2026-08-29",
+      "notes": "A single methodology change moved the two named series in opposite directions."
+    },
+    {
+      "event_id": "sd-251203-2",
+      "vendor": "silicon_data",
+      "announced": "2025-12-03",
+      "effective": "2025-12-04",
+      "event_type": "new_index",
+      "affected_benchmarks": ["SDB200RT"],
+      "impacts": [],
+      "impact_status": "not_applicable",
+      "restated": false,
+      "history_start": null,
+      "source_id": "silicondata-break-register-2026-08-29",
+      "notes": "Launch of the Silicon Data B200 neocloud index."
+    },
+    {
+      "event_id": "sd-260325-1",
+      "vendor": "silicon_data",
+      "announced": "2026-03-25",
+      "effective": "2026-04-06",
+      "event_type": "provider_change",
+      "affected_benchmarks": ["SDH100RT"],
+      "impacts": [
+        {"benchmark_id": "SDH100RT", "low_pct": -7.0, "high_pct": -3.0}
+      ],
+      "impact_status": "quantified_range",
+      "restated": false,
+      "history_start": null,
+      "source_id": "silicondata-break-register-2026-08-29",
+      "notes": "Published history was not restated."
+    },
+    {
+      "event_id": "sd-260630-1",
+      "vendor": "silicon_data",
+      "announced": "2026-06-30",
+      "effective": "2026-07-15",
+      "event_type": "provider_change",
+      "affected_benchmarks": ["SDB200RT"],
+      "impacts": [
+        {"benchmark_id": "SDB200RT", "low_pct": -6.0, "high_pct": 0.0}
+      ],
+      "impact_status": "quantified_range",
+      "restated": false,
+      "history_start": null,
+      "source_id": "silicondata-break-register-2026-08-29",
+      "notes": "Publisher described the effect as up to a 6% decrease; history was not restated."
+    },
+    {
+      "event_id": "sd-260630-2",
+      "vendor": "silicon_data",
+      "announced": "2026-06-30",
+      "effective": "2026-07-15",
+      "event_type": "new_index",
+      "affected_benchmarks": ["SD-H200-NEOCLOUD"],
+      "impacts": [],
+      "impact_status": "not_applicable",
+      "restated": false,
+      "history_start": "2026-05-04",
+      "source_id": "silicondata-break-register-2026-08-29",
+      "notes": "The captured announcement names the H200 neocloud index but does not supply a ticker."
+    },
+    {
+      "event_id": "ornn-register-status-2026-08-29",
+      "vendor": "ornn",
+      "announced": null,
+      "effective": "2026-08-29",
+      "event_type": "audit_status",
+      "affected_benchmarks": [],
+      "impacts": [],
+      "impact_status": "unknown",
+      "restated": null,
+      "history_start": null,
+      "source_id": "ornn-h100-2026-08-29",
+      "notes": "No comparable dated public break register was found in the archived project evidence."
+    }
+  ]
+}
