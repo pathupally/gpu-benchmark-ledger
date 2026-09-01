@@ -9,4 +9,4 @@ version: 1.0.0
 date-released: 2026-08-31
 license: MIT
 abstract: "A vintage-aware comparability and tracking-analysis system for compute price benchmarks."
-repository-code: "https://github.com/pathupally/compute-benchmark-ledger"
+repository-code: "https://github.com/pathupally/gpu-benchmark-ledger"
