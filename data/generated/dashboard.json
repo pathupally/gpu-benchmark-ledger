@@ -1,11 +1,38 @@
 {
   "analytics": {
     "correlation": {
-      "levels_required": 21,
-      "minimum_shared_returns": 20,
+      "levels_required": 61,
+      "minimum_shared_returns": 60,
       "observed_shared_levels": 1,
       "observed_shared_returns": 0,
-      "reason": "A rolling estimate requires at least 20 shared daily returns. Only one matched cross-section is archived.",
+      "reason": "No series has the 61 matched levels required for a 20-return lagged rolling estimator and a non-trivial out-of-sample evaluation.",
+      "status": "unavailable"
+    },
+    "cross_benchmark_tracking": {
+      "estimand": "cross-benchmark tracking effectiveness",
+      "observed_count": 1,
+      "reason": "No series has the 61 matched levels required for a 20-return lagged rolling estimator and a non-trivial out-of-sample evaluation.",
+      "required_count": 61,
+      "series": [
+        {
+          "estimand": "cross-benchmark tracking effectiveness",
+          "gpu_model": "B200",
+          "observed_count": 1,
+          "reason": "Cross-benchmark tracking requires at least 61 matched levels so a 20-return coefficient can be applied to a non-trivial out-of-sample window.",
+          "required_count": 61,
+          "status": "unavailable",
+          "window_returns": 20
+        },
+        {
+          "estimand": "cross-benchmark tracking effectiveness",
+          "gpu_model": "H100",
+          "observed_count": 1,
+          "reason": "Cross-benchmark tracking requires at least 61 matched levels so a 20-return coefficient can be applied to a non-trivial out-of-sample window.",
+          "required_count": 61,
+          "status": "unavailable",
+          "window_returns": 20
+        }
+      ],
       "status": "unavailable"
     },
     "hedge_effectiveness": {
@@ -13,13 +40,66 @@
       "status": "unavailable"
     },
     "rolling_hedge_ratio": {
-      "levels_required": 21,
-      "minimum_shared_returns": 20,
+      "levels_required": 61,
+      "minimum_shared_returns": 60,
       "observed_shared_levels": 1,
       "observed_shared_returns": 0,
-      "reason": "A rolling estimate requires at least 20 shared daily returns. Only one matched cross-section is archived.",
+      "reason": "No series has the 61 matched levels required for a 20-return lagged rolling estimator and a non-trivial out-of-sample evaluation.",
       "status": "unavailable"
     }
+  },
+  "basis_monitor": {
+    "admitted_pairs": 0,
+    "candidate_pairs": 4,
+    "estimand": "strict matched-specification log basis",
+    "exclusions": [
+      {
+        "pair_id": "pair-h100-2026-08-29",
+        "reasons": [
+          "tier_unknown",
+          "rental_type_mismatch"
+        ]
+      },
+      {
+        "pair_id": "pair-a100-2026-08-29",
+        "reasons": [
+          "tier_unknown",
+          "rental_type_mismatch"
+        ]
+      },
+      {
+        "pair_id": "pair-b200-2026-08-29",
+        "reasons": [
+          "tier_unknown",
+          "rental_type_mismatch"
+        ]
+      },
+      {
+        "pair_id": "pair-h200-2026-08-29",
+        "reasons": [
+          "tier_unknown",
+          "rental_type_mismatch"
+        ]
+      }
+    ],
+    "matching_rule": {
+      "dimensions": [
+        "gpu_model",
+        "tier",
+        "rental_type"
+      ],
+      "root_fields": [
+        "observation_date",
+        "unit",
+        "statistic"
+      ],
+      "unknown_values_allowed": false
+    },
+    "observed_count": 0,
+    "reason": "No persistence or mean-reversion estimate is reported before one GPU series contains 120 strictly matched daily observations.",
+    "required_count": 120,
+    "series": [],
+    "status": "unavailable"
   },
   "coverage": [
     {
@@ -408,7 +488,10 @@
       "provider_weighting": null,
       "rental_type": "on_demand",
       "source_ids": [
-        "ornn-h100-2026-08-29"
+        "ornn-a100-2026-08-29",
+        "ornn-b200-2026-08-29",
+        "ornn-h100-2026-08-29",
+        "ornn-h200-2026-08-29"
       ],
       "status": "current_as_observed",
       "vendor": "ornn"
@@ -524,6 +607,7 @@
         },
         "methodology_version": "ornn-public-2026-08-29",
         "source_id": "ornn-a100-2026-08-29",
+        "statistic": "spot_index",
         "ticker": null,
         "value": 1.21
       },
@@ -543,6 +627,7 @@
         },
         "methodology_version": "sd-current-2025-12-04",
         "source_id": "silicondata-portal-2026-08-29",
+        "statistic": "spot_index",
         "ticker": "SDA100RT",
         "value": 1.61
       }
@@ -641,6 +726,7 @@
         },
         "methodology_version": "ornn-public-2026-08-29",
         "source_id": "ornn-b200-2026-08-29",
+        "statistic": "spot_index",
         "ticker": null,
         "value": 6.01
       },
@@ -660,6 +746,7 @@
         },
         "methodology_version": "sd-current-2025-12-04",
         "source_id": "silicondata-portal-2026-08-29",
+        "statistic": "spot_index",
         "ticker": "SDB200RT",
         "value": 5.58
       }
@@ -762,6 +849,7 @@
         },
         "methodology_version": "ornn-public-2026-08-29",
         "source_id": "ornn-h100-2026-08-29",
+        "statistic": "spot_index",
         "ticker": null,
         "value": 2.93
       },
@@ -781,6 +869,7 @@
         },
         "methodology_version": "sd-current-2025-12-04",
         "source_id": "silicondata-portal-2026-08-29",
+        "statistic": "spot_index",
         "ticker": "SDH100RT",
         "value": 2.65
       }
@@ -872,6 +961,7 @@
         },
         "methodology_version": "ornn-public-2026-08-29",
         "source_id": "ornn-h200-2026-08-29",
+        "statistic": "spot_index",
         "ticker": null,
         "value": 4.49
       },
@@ -891,6 +981,7 @@
         },
         "methodology_version": "sd-current-2025-12-04",
         "source_id": "silicondata-portal-2026-08-29",
+        "statistic": "spot_index",
         "ticker": null,
         "value": 3.25
       }
@@ -898,63 +989,81 @@
   ],
   "sources": [
     {
-      "archive_path": "parent:data/snapshots/silicondata-portal/2026-08-29.json",
       "artifact": "Authenticated Basic-tier portal capture",
-      "limitations": "Rendered values are rounded to two decimals and expose only a trailing seven-day window.",
+      "limitations": "Rendered values are rounded to two decimals and expose only a trailing seven-day window. The fingerprint identifies a private source capture and cannot be independently verified from this repository.",
+      "provenance_fingerprint": "588ed1a4635741e8a15bafcd33a63c78b092478702eba47032b540d73a8d6977",
       "publisher": "Silicon Data",
+      "raw_artifact_redistributed": false,
+      "redistribution_status": "metadata_and_normalized_derived_records_only",
       "retrieved_on": "2026-08-29",
-      "sha256": "588ed1a4635741e8a15bafcd33a63c78b092478702eba47032b540d73a8d6977",
       "source_id": "silicondata-portal-2026-08-29",
+      "source_record_locator": "GPU index table as displayed on 2026-08-29",
+      "upstream_rights": "retained_by_publisher",
       "upstream_uri": "https://portal.silicondata.com/silicon-index"
     },
     {
-      "archive_path": "parent:data/snapshots/ornn/a100-sxm4/2026-08-29.json",
       "artifact": "A100 SXM4 index-history snapshot",
-      "limitations": "Public endpoint is clamped to a rolling three-month window.",
+      "limitations": "The public endpoint is clamped to a rolling three-month window. The fingerprint identifies a private source capture and is not an independently verifiable integrity check here.",
+      "provenance_fingerprint": "f579705720c41a68775cead73c3b2b403f7397da5ed40fb0b124794aee93d0d3",
       "publisher": "Ornn",
+      "raw_artifact_redistributed": false,
+      "redistribution_status": "metadata_and_normalized_derived_records_only",
       "retrieved_on": "2026-08-29",
-      "sha256": "f579705720c41a68775cead73c3b2b403f7397da5ed40fb0b124794aee93d0d3",
       "source_id": "ornn-a100-2026-08-29",
+      "source_record_locator": "timestamp=2026-08-28T20:00:00.000Z",
+      "upstream_rights": "retained_by_publisher",
       "upstream_uri": "https://api.ornnai.com/api/gpu/A100%20SXM4/index-history"
     },
     {
-      "archive_path": "parent:data/snapshots/ornn/b200/2026-08-29.json",
       "artifact": "B200 index-history snapshot",
-      "limitations": "Public endpoint is clamped to a rolling three-month window.",
+      "limitations": "The public endpoint is clamped to a rolling three-month window. The fingerprint identifies a private source capture and is not an independently verifiable integrity check here.",
+      "provenance_fingerprint": "a6392f63f68cc0842f72c9b8f57a6a062aa321049b1d65a1438f57c08bba8de7",
       "publisher": "Ornn",
+      "raw_artifact_redistributed": false,
+      "redistribution_status": "metadata_and_normalized_derived_records_only",
       "retrieved_on": "2026-08-29",
-      "sha256": "a6392f63f68cc0842f72c9b8f57a6a062aa321049b1d65a1438f57c08bba8de7",
       "source_id": "ornn-b200-2026-08-29",
+      "source_record_locator": "timestamp=2026-08-28T20:00:00.000Z",
+      "upstream_rights": "retained_by_publisher",
       "upstream_uri": "https://api.ornnai.com/api/gpu/B200/index-history"
     },
     {
-      "archive_path": "parent:data/snapshots/ornn/h100-sxm/2026-08-29.json",
       "artifact": "H100 SXM index-history snapshot",
-      "limitations": "Public endpoint is clamped to a rolling three-month window.",
+      "limitations": "The public endpoint is clamped to a rolling three-month window. The fingerprint identifies a private source capture and is not an independently verifiable integrity check here.",
+      "provenance_fingerprint": "7f4f3f1cc5fe5692e6dbb32d43d5335071a3cd8e44b676bb495d22328253f10c",
       "publisher": "Ornn",
+      "raw_artifact_redistributed": false,
+      "redistribution_status": "metadata_and_normalized_derived_records_only",
       "retrieved_on": "2026-08-29",
-      "sha256": "7f4f3f1cc5fe5692e6dbb32d43d5335071a3cd8e44b676bb495d22328253f10c",
       "source_id": "ornn-h100-2026-08-29",
+      "source_record_locator": "timestamp=2026-08-28T20:00:00.000Z",
+      "upstream_rights": "retained_by_publisher",
       "upstream_uri": "https://api.ornnai.com/api/gpu/H100%20SXM/index-history"
     },
     {
-      "archive_path": "parent:data/snapshots/ornn/h200/2026-08-29.json",
       "artifact": "H200 index-history snapshot",
-      "limitations": "Public endpoint is clamped to a rolling three-month window.",
+      "limitations": "The public endpoint is clamped to a rolling three-month window. The fingerprint identifies a private source capture and is not an independently verifiable integrity check here.",
+      "provenance_fingerprint": "33c521030206f5cca01edc6cbd4f9cb1eeb32017e4c9337f9f61ff6e80c5e0ff",
       "publisher": "Ornn",
+      "raw_artifact_redistributed": false,
+      "redistribution_status": "metadata_and_normalized_derived_records_only",
       "retrieved_on": "2026-08-29",
-      "sha256": "33c521030206f5cca01edc6cbd4f9cb1eeb32017e4c9337f9f61ff6e80c5e0ff",
       "source_id": "ornn-h200-2026-08-29",
+      "source_record_locator": "timestamp=2026-08-28T20:00:00.000Z",
+      "upstream_rights": "retained_by_publisher",
       "upstream_uri": "https://api.ornnai.com/api/gpu/H200/index-history"
     },
     {
-      "archive_path": "parent:outputs/break-calendar.json",
-      "artifact": "Parsed GPU index announcement register",
-      "limitations": "Impact ranges are publisher estimates; one historical jump is unquantified.",
+      "artifact": "Normalized GPU index announcement register",
+      "limitations": "Impact ranges are publisher estimates; one historical jump is unquantified. The fingerprint identifies a private normalized source capture.",
+      "provenance_fingerprint": "6534b2d94c71f1ce0aa4da7feab734d7fd169f23c14e088004bc7336964c4397",
       "publisher": "Silicon Data",
+      "raw_artifact_redistributed": false,
+      "redistribution_status": "metadata_and_normalized_derived_records_only",
       "retrieved_on": "2026-08-29",
-      "sha256": "6534b2d94c71f1ce0aa4da7feab734d7fd169f23c14e088004bc7336964c4397",
       "source_id": "silicondata-break-register-2026-08-29",
+      "source_record_locator": "dated GPU index announcement entries through 2026-08-29",
+      "upstream_rights": "retained_by_publisher",
       "upstream_uri": "https://docs.silicondata.com/products/gpu-index-announcements.md"
     }
   ]

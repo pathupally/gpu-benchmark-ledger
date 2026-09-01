@@ -7,10 +7,12 @@ import math
 from pathlib import Path
 from typing import Any
 
+from .analytics import (
+    MINIMUM_HEDGE_LEVELS,
+    cross_benchmark_tracking,
+    matched_basis_monitor,
+)
 from .validation import load_json, load_jsonl, require_valid_project
-
-
-MINIMUM_SHARED_RETURNS = 20
 
 
 def default_project_root() -> Path:
@@ -95,6 +97,43 @@ def _break_sensitivity(
     }
 
 
+def _tracking_analytics(
+    pair_book: dict[str, Any], by_id: dict[str, dict[str, Any]]
+) -> dict[str, Any]:
+    grouped: dict[str, list[tuple[dict[str, Any], dict[str, Any]]]] = {}
+    for pair in pair_book["pairs"]:
+        if not pair["analysis_eligible"]:
+            continue
+        ornn = by_id[pair["ornn_observation_id"]]
+        sd = by_id[pair["silicon_data_observation_id"]]
+        grouped.setdefault(pair["gpu_model"], []).append((ornn, sd))
+
+    series: list[dict[str, Any]] = []
+    for gpu_model, rows in sorted(grouped.items()):
+        rows.sort(key=lambda pair: pair[0]["observation_date"])
+        estimate = cross_benchmark_tracking(
+            [ornn["observation_date"] for ornn, _ in rows],
+            [sd["value"] for _, sd in rows],
+            [ornn["value"] for ornn, _ in rows],
+        )
+        series.append({"gpu_model": gpu_model, **estimate})
+
+    maximum = max((item["observed_count"] for item in series), default=0)
+    return {
+        "status": "available" if any(item["status"] == "available" for item in series) else "unavailable",
+        "estimand": "cross-benchmark tracking effectiveness",
+        "observed_count": maximum,
+        "required_count": MINIMUM_HEDGE_LEVELS,
+        "reason": (
+            "No series has the 61 matched levels required for a 20-return lagged "
+            "rolling estimator and a non-trivial out-of-sample evaluation."
+            if maximum < MINIMUM_HEDGE_LEVELS
+            else "At least one mapped benchmark pair has enough observations."
+        ),
+        "series": series,
+    }
+
+
 def compute_analysis(project_root: Path) -> dict[str, Any]:
     root = project_root.resolve()
     require_valid_project(root)
@@ -122,6 +161,7 @@ def compute_analysis(project_root: Path) -> dict[str, Any]:
                 "value": ornn["value"],
                 "source_id": ornn["source_id"],
                 "methodology_version": ornn["methodology_version"],
+                "statistic": ornn["statistic"],
                 "dimensions": ornn["dimensions"],
             },
             "silicon_data": {
@@ -130,6 +170,7 @@ def compute_analysis(project_root: Path) -> dict[str, Any]:
                 "value": sd["value"],
                 "source_id": sd["source_id"],
                 "methodology_version": sd["methodology_version"],
+                "statistic": sd["statistic"],
                 "dimensions": sd["dimensions"],
             },
             "basis": {
@@ -150,15 +191,16 @@ def compute_analysis(project_root: Path) -> dict[str, Any]:
     sign_reversal = any(row["basis"]["raw_pct"] < 0 for row in results) and any(
         row["basis"]["raw_pct"] > 0 for row in results
     )
-    observed_levels = 1 if results else 0
-    observed_returns = max(0, observed_levels - 1)
-    analytics_gate = {
+    basis_monitor = matched_basis_monitor(observations, pair_book["pairs"])
+    tracking = _tracking_analytics(pair_book, by_id)
+    observed_levels = tracking["observed_count"]
+    legacy_gate = {
         "status": "unavailable",
         "observed_shared_levels": observed_levels,
-        "observed_shared_returns": observed_returns,
-        "minimum_shared_returns": MINIMUM_SHARED_RETURNS,
-        "levels_required": MINIMUM_SHARED_RETURNS + 1,
-        "reason": "A rolling estimate requires at least 20 shared daily returns. Only one matched cross-section is archived.",
+        "observed_shared_returns": max(0, observed_levels - 1),
+        "minimum_shared_returns": MINIMUM_HEDGE_LEVELS - 1,
+        "levels_required": MINIMUM_HEDGE_LEVELS,
+        "reason": tracking["reason"],
     }
     retrieved_dates = [source["retrieved_on"] for source in registry["sources"]]
 
@@ -179,13 +221,15 @@ def compute_analysis(project_root: Path) -> dict[str, Any]:
         },
         "pairs": results,
         "analytics": {
-            "correlation": dict(analytics_gate),
-            "rolling_hedge_ratio": dict(analytics_gate),
+            "correlation": dict(legacy_gate),
+            "rolling_hedge_ratio": dict(legacy_gate),
+            "cross_benchmark_tracking": tracking,
             "hedge_effectiveness": {
                 "status": "unavailable",
                 "reason": "No participant-level cash-price panel is present. Benchmark disagreement is not hedge effectiveness.",
             },
         },
+        "basis_monitor": basis_monitor,
         "coverage": [
             {
                 "pair_id": row["pair_id"],
@@ -260,6 +304,10 @@ def build(project_root: Path | None = None, output_root: Path | None = None) -> 
     (generated_dir / "validation-report.json").write_text(_json_text(report), encoding="utf-8")
     (generated_dir / "matched-basis.json").write_text(_json_text({"pairs": analysis["pairs"]}), encoding="utf-8")
     (generated_dir / "matched-basis.csv").write_text(_csv_text(analysis["pairs"]), encoding="utf-8")
+    (generated_dir / "basis-monitor.json").write_text(_json_text(analysis["basis_monitor"]), encoding="utf-8")
+    (generated_dir / "hedge-analysis.json").write_text(
+        _json_text(analysis["analytics"]["cross_benchmark_tracking"]), encoding="utf-8"
+    )
     (generated_dir / "dashboard.json").write_text(_json_text(analysis), encoding="utf-8")
     browser_payload = "window.BENCHMARK_LEDGER_DATA = " + json.dumps(
         analysis, sort_keys=True, ensure_ascii=False, separators=(",", ":")
@@ -274,6 +322,8 @@ def clean(project_root: Path | None = None) -> list[Path]:
         root / "data" / "generated" / "validation-report.json",
         root / "data" / "generated" / "matched-basis.json",
         root / "data" / "generated" / "matched-basis.csv",
+        root / "data" / "generated" / "basis-monitor.json",
+        root / "data" / "generated" / "hedge-analysis.json",
         root / "data" / "generated" / "dashboard.json",
         root / "web" / "data.generated.js",
     ]
@@ -283,4 +333,3 @@ def clean(project_root: Path | None = None) -> list[Path]:
             target.unlink()
             removed.append(target)
     return removed
-

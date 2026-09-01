@@ -59,7 +59,7 @@ The 2025-12-04 methodology change is preserved in the ledger but excluded from t
 
 ## 4. What cannot yet be estimated
 
-The archive has one shared Ornn/Silicon Data cross-section, not a common daily panel. Correlation and a rolling hedge ratio require returns, so the release gates both calculations at 20 shared daily returns and reports no number. A participant cash-price panel is also absent. It would be incorrect to label benchmark correlation as hedge effectiveness against a user's realized rental exposure.
+The archive has one shared Ornn/Silicon Data cross-section, not a common daily panel. The release requires 61 matched levels before applying a 20-return rolling coefficient out of sample, so it reports no tracking statistic. A participant cash-price panel is also absent. It would be incorrect to label cross-benchmark tracking as hedge effectiveness against a user's realized rental exposure.
 
 The next valid empirical step is append-only collection of both vendors under frozen mapping rules. Once 21 matched levels exist, rolling statistics can begin as descriptive diagnostics. An out-of-sample hedge test remains gated on participant cash prices.
 
@@ -77,5 +77,4 @@ make all
 
 The command validates all source references and semantic invariants, writes the matched basis to JSON and CSV, generates the browser payload, and runs the test suite. The calculation uses only the standard library. Inputs, source digests, methodology versions, and pair declarations are stored under `data/source/`; derived artifacts are stored under `data/generated/`.
 
-The evidence was frozen from the parent `compute_futures` repository on 2026-08-29. SHA-256 digests identify the exact local archives used; they establish reproducibility of this analysis, not completeness or accuracy of the upstream vendor data.
-
+The evidence was normalized from source captures dated 2026-08-29. Provenance fingerprints identify those non-redistributed captures; they document the research vintage but cannot independently verify unavailable source bytes or the completeness of upstream vendor data.

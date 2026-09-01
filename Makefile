@@ -1,7 +1,7 @@
 PYTHON ?= python3
 export PYTHONPATH := src
 
-.PHONY: all build validate test serve clean
+.PHONY: all build validate basis hedge test serve clean
 
 all: validate build test
 
@@ -11,6 +11,12 @@ validate:
 build:
 	$(PYTHON) -m benchmark_ledger build
 
+basis:
+	$(PYTHON) -m benchmark_ledger basis
+
+hedge:
+	$(PYTHON) -m benchmark_ledger hedge
+
 test:
 	$(PYTHON) -m unittest discover -s tests -v
 
@@ -19,4 +25,3 @@ serve: build
 
 clean:
 	$(PYTHON) -m benchmark_ledger clean
-

@@ -91,6 +91,7 @@
         },
         "methodology_version": "ornn-public-2026-08-29",
         "source_id": "ornn-a100-2026-08-29",
+        "statistic": "spot_index",
         "ticker": null,
         "value": 1.21
       },
@@ -110,6 +111,7 @@
         },
         "methodology_version": "sd-current-2025-12-04",
         "source_id": "silicondata-portal-2026-08-29",
+        "statistic": "spot_index",
         "ticker": "SDA100RT",
         "value": 1.61
       }
@@ -208,6 +210,7 @@
         },
         "methodology_version": "ornn-public-2026-08-29",
         "source_id": "ornn-b200-2026-08-29",
+        "statistic": "spot_index",
         "ticker": null,
         "value": 6.01
       },
@@ -227,6 +230,7 @@
         },
         "methodology_version": "sd-current-2025-12-04",
         "source_id": "silicondata-portal-2026-08-29",
+        "statistic": "spot_index",
         "ticker": "SDB200RT",
         "value": 5.58
       }
@@ -329,6 +333,7 @@
         },
         "methodology_version": "ornn-public-2026-08-29",
         "source_id": "ornn-h100-2026-08-29",
+        "statistic": "spot_index",
         "ticker": null,
         "value": 2.93
       },
@@ -348,6 +353,7 @@
         },
         "methodology_version": "sd-current-2025-12-04",
         "source_id": "silicondata-portal-2026-08-29",
+        "statistic": "spot_index",
         "ticker": "SDH100RT",
         "value": 2.65
       }
@@ -439,6 +445,7 @@
         },
         "methodology_version": "ornn-public-2026-08-29",
         "source_id": "ornn-h200-2026-08-29",
+        "statistic": "spot_index",
         "ticker": null,
         "value": 4.49
       },
@@ -458,6 +465,7 @@
         },
         "methodology_version": "sd-current-2025-12-04",
         "source_id": "silicondata-portal-2026-08-29",
+        "statistic": "spot_index",
         "ticker": null,
         "value": 3.25
       }

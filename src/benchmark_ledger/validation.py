@@ -147,10 +147,41 @@ def validate_project(project_root: Path) -> dict[str, Any]:
             _issue(issues, "source_id_duplicate", location, f"duplicate source_id {source_id}")
         else:
             source_ids.add(source_id)
-        if not SHA256_RE.fullmatch(str(source.get("sha256", ""))):
-            _issue(issues, "source_hash_invalid", f"{location}.sha256", "expected 64 lowercase hexadecimal characters")
+        fingerprint = source.get("provenance_fingerprint", "")
+        if not SHA256_RE.fullmatch(str(fingerprint)):
+            _issue(
+                issues,
+                "source_fingerprint_invalid",
+                f"{location}.provenance_fingerprint",
+                "expected 64 lowercase hexadecimal characters",
+            )
         if not _valid_date(source.get("retrieved_on")):
             _issue(issues, "source_date_invalid", f"{location}.retrieved_on", "expected an ISO 8601 date")
+        if not source.get("upstream_uri"):
+            _issue(issues, "source_uri_missing", f"{location}.upstream_uri", "upstream URI is required")
+        if not source.get("source_record_locator"):
+            _issue(issues, "source_locator_missing", f"{location}.source_record_locator", "source record locator is required")
+        if source.get("raw_artifact_redistributed") is not False:
+            _issue(
+                issues,
+                "source_raw_redistribution_invalid",
+                f"{location}.raw_artifact_redistributed",
+                "public package must not redistribute raw source artifacts",
+            )
+        if source.get("redistribution_status") != "metadata_and_normalized_derived_records_only":
+            _issue(
+                issues,
+                "source_redistribution_status_invalid",
+                f"{location}.redistribution_status",
+                "expected normalized-derived-records-only status",
+            )
+        if "archive_path" in source:
+            _issue(
+                issues,
+                "source_private_path_present",
+                f"{location}.archive_path",
+                "public source registry cannot reference a private parent archive path",
+            )
 
     methodology_ids: set[str] = set()
     for index, methodology in enumerate(ledger.get("methodologies", [])):

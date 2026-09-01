@@ -1,0 +1,53 @@
+{
+  "admitted_pairs": 0,
+  "candidate_pairs": 4,
+  "estimand": "strict matched-specification log basis",
+  "exclusions": [
+    {
+      "pair_id": "pair-h100-2026-08-29",
+      "reasons": [
+        "tier_unknown",
+        "rental_type_mismatch"
+      ]
+    },
+    {
+      "pair_id": "pair-a100-2026-08-29",
+      "reasons": [
+        "tier_unknown",
+        "rental_type_mismatch"
+      ]
+    },
+    {
+      "pair_id": "pair-b200-2026-08-29",
+      "reasons": [
+        "tier_unknown",
+        "rental_type_mismatch"
+      ]
+    },
+    {
+      "pair_id": "pair-h200-2026-08-29",
+      "reasons": [
+        "tier_unknown",
+        "rental_type_mismatch"
+      ]
+    }
+  ],
+  "matching_rule": {
+    "dimensions": [
+      "gpu_model",
+      "tier",
+      "rental_type"
+    ],
+    "root_fields": [
+      "observation_date",
+      "unit",
+      "statistic"
+    ],
+    "unknown_values_allowed": false
+  },
+  "observed_count": 0,
+  "reason": "No persistence or mean-reversion estimate is reported before one GPU series contains 120 strictly matched daily observations.",
+  "required_count": 120,
+  "series": [],
+  "status": "unavailable"
+}

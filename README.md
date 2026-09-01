@@ -1,86 +1,86 @@
-# Benchmark Ledger
+# Compute Benchmark Ledger
 
-Benchmark Ledger is a standalone, vintage-preserving comparison of Ornn and Silicon Data GPU price benchmarks. It turns the first research idea in the parent `compute_futures` repository into a reproducible data contract, analysis pipeline, methodology ledger, decision dashboard, and short research note.
+A vintage-aware measurement system for deciding whether two compute-price
+benchmarks are economically comparable before they are used in settlement or
+tracking analysis.
 
-The current release does one thing carefully: it reproduces the 2026-08-29 matched cross-section without inventing a shared time series that the archive does not contain.
+The current release reproduces one cross-section, dated 2026-08-29. It does not
+invent a time series, label benchmark disagreement as arbitrage, or report an
+underpowered hedge statistic.
 
-## Result
+## Current evidence
 
-| GPU | Silicon Data | Ornn | Ornn vs. SD | Match | Decision use |
+| GPU | Silicon Data | Ornn | Ornn vs. SD | Match | Permitted use |
 | --- | ---: | ---: | ---: | --- | --- |
 | H100 | $2.65 | $2.93 | +10.6% | Mapped / C | Eligible with caveats |
-| A100 | $1.61 | $1.21 | −24.8% | Approximate / D | Diagnostic only |
+| A100 | $1.61 | $1.21 | -24.8% | Approximate / D | Diagnostic only |
 | B200 | $5.58 | $6.01 | +7.7% | Mapped / C | Eligible with caveats |
 | H200 | $3.25 | $4.49 | +38.2% | Approximate / D | Diagnostic only |
 
-The A100 sign reversal rules out a single constant vendor markup as a complete explanation. It does not establish arbitrage or hedge effectiveness: form factor, memory, tier, rental mix, and settlement terms are not fully aligned.
+H100 and B200 align on model, date, unit, and broad rental market, but still
+carry specification uncertainty. A100 and H200 omit material dimensions and
+cannot become decision-eligible. These are benchmark differences on one date,
+not persistent signals.
 
-## Run it
+## What the package enforces
 
-Requirements: Python 3.11 or later. Runtime and tests use only the standard library.
+- Every observation names its methodology vintage, source, locator, dimensions,
+  precision, and restatement status.
+- Approximate mappings cannot become decision-eligible.
+- Published break ranges retain both endpoints; unquantified breaks remain
+  unbounded and restated events are not silently reapplied.
+- The strict basis monitor requires the same date, unit, statistic, GPU, tier,
+  and rental type, with no unknown matching values.
+- Persistence and mean-reversion claims are withheld until 120 strictly matched
+  daily observations exist.
+- Cross-benchmark tracking effectiveness is withheld until 61 matched levels
+  exist. Its 20-return coefficient is lagged before out-of-sample application.
+
+The tracking estimand is variance reduction when using Ornn returns to track
+Silicon Data returns. It is not a futures hedge and not hedge effectiveness for
+a compute buyer or provider.
+
+## Reproduce
+
+Python 3.11 or later is required. Runtime and tests use only the standard
+library and make no network requests.
 
 ```sh
 make all
-make serve
+
+PYTHONPATH=src python3 -m benchmark_ledger validate
+PYTHONPATH=src python3 -m benchmark_ledger build
+PYTHONPATH=src python3 -m benchmark_ledger basis
+PYTHONPATH=src python3 -m benchmark_ledger hedge
 ```
 
-Then open `http://127.0.0.1:8000/web/`. `make all` validates the input contract, rebuilds every derived artifact, and runs the test suite.
+The equivalent installed commands are `benchmark-ledger validate`, `build`,
+`basis`, and `hedge`. Unavailable analyses return structured `status`, `reason`,
+`observed_count`, and `required_count` fields without placeholder estimates.
 
-Individual commands:
+## Versioned research contract
 
-```sh
-make validate
-make build
-make test
-PYTHONPATH=src python3 -m benchmark_ledger serve --port 8080
-```
+- `schemas/benchmark-observation.schema.json` defines normalized observations.
+- `data/source/observations.jsonl` contains the minimal derived records.
+- `data/source/benchmark-pairs.json` declares mappings and decision eligibility.
+- `data/source/methodology-ledger.json` preserves methodologies and break events.
+- `data/source/source-registry.json` records upstream locations and provenance
+  fingerprints without redistributing raw captures.
+- `data/generated/` contains deterministic basis, gate, and tracking artifacts.
+- `docs/paper/one-gpu-two-settlement-prices.md` is the short research note.
 
-An editable install also exposes the `benchmark-ledger` command:
+Provenance fingerprints identify private source captures. Because those raw
+artifacts are not redistributed, the fingerprints are provenance evidence, not
+independently verifiable integrity checks. See `DATA_NOTICE.md`.
 
-```sh
-python3 -m venv .venv
-.venv/bin/pip install -e .
-.venv/bin/benchmark-ledger build
-```
+## Scope
 
-## What is versioned
+This repository contains normalized derived records, source metadata, analysis
+code, tests, and generated results. It contains no credentials, copied vendor
+articles, raw API payloads, or subscription-gated captures.
 
-- `schemas/benchmark-observation.schema.json` — portable observation contract.
-- `data/source/observations.jsonl` — immutable matched-date records.
-- `data/source/benchmark-pairs.json` — declared mappings and coverage assessments.
-- `data/source/methodology-ledger.json` — methodology vintages and break events for both vendors.
-- `data/source/source-registry.json` — retrieval dates, upstream locations, archive paths, and SHA-256 digests.
-- `data/generated/` — deterministic validation, basis, and dashboard artifacts.
-- `web/` — accessible static dashboard with no frontend build dependency.
-- `docs/paper/one-gpu-two-settlement-prices.md` — research note.
-- `docs/plans/` — immutable v1 plan and post-implementation v2 revision.
+Author: Adrian Mathew, Purdue University.
 
-The frozen inputs are self-contained research records. Their hashes identify the evidence archived in the parent repository; this subrepo never reaches into the parent at runtime and never fetches a live endpoint.
-
-## Calculation
-
-For a declared GPU/date pair:
-
-```text
-raw log basis = log(Ornn) - log(Silicon Data)
-raw percentage basis = (Ornn / Silicon Data - 1) × 100
-```
-
-For a published, non-restated Silicon Data break impact `p`, the counterfactual log basis is:
-
-```text
-adjusted log basis = raw log basis + log(1 + p)
-```
-
-Low and high endpoints are propagated independently. The pipeline never substitutes an unreported midpoint. Restated events stay in the ledger but are excluded from the non-restated sensitivity adjustment. Unquantified jumps remain visible as unbounded risk.
-
-## Honest unavailable states
-
-Correlation and rolling hedge ratios require at least 20 shared daily returns, or 21 matched levels. The archive has one shared cross-section. The dashboard therefore exposes the data gate and returns no numeric estimate. Hedge effectiveness remains unavailable until a participant cash-price panel exists.
-
-## Repository boundary
-
-This directory has its own `.git` history and can be moved or published separately from the parent research repository. It contains no credentials, subscription-gated payloads, or network collection code.
-
-This is measurement infrastructure, not investment, trading, or hedging advice.
-
+Software is MIT licensed. Upstream data and trademarks remain the property of
+their respective publishers. This is research infrastructure, not investment,
+trading, or hedging advice.

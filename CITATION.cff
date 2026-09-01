@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+title: "Compute Benchmark Ledger"
+message: "If you use this software or research record, please cite it as below."
+type: software
+authors:
+  - family-names: Mathew
+    given-names: Adrian
+version: 1.0.0
+date-released: 2026-08-31
+license: MIT
+abstract: "A vintage-aware comparability and tracking-analysis system for compute price benchmarks."
+repository-code: "https://github.com/adrianm75/compute-benchmark-ledger"

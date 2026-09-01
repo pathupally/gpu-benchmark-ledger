@@ -19,6 +19,19 @@ class ValidationTests(unittest.TestCase):
         self.assertEqual(report["counts"]["observations"], 8)
         self.assertEqual(report["counts"]["pairs"], 4)
 
+    def test_source_registry_has_no_private_parent_paths(self) -> None:
+        registry = json.loads(
+            (ROOT / "data" / "source" / "source-registry.json").read_text(encoding="utf-8")
+        )
+        for source in registry["sources"]:
+            self.assertNotIn("archive_path", source)
+            self.assertFalse(source["raw_artifact_redistributed"])
+            self.assertEqual(
+                source["redistribution_status"],
+                "metadata_and_normalized_derived_records_only",
+            )
+            self.assertEqual(len(source["provenance_fingerprint"]), 64)
+
     def test_nonpositive_price_is_rejected_by_schema(self) -> None:
         with tempfile.TemporaryDirectory() as directory:
             fixture = Path(directory) / "project"
@@ -52,4 +65,3 @@ class ValidationTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

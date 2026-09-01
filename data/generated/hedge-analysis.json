@@ -1,0 +1,27 @@
+{
+  "estimand": "cross-benchmark tracking effectiveness",
+  "observed_count": 1,
+  "reason": "No series has the 61 matched levels required for a 20-return lagged rolling estimator and a non-trivial out-of-sample evaluation.",
+  "required_count": 61,
+  "series": [
+    {
+      "estimand": "cross-benchmark tracking effectiveness",
+      "gpu_model": "B200",
+      "observed_count": 1,
+      "reason": "Cross-benchmark tracking requires at least 61 matched levels so a 20-return coefficient can be applied to a non-trivial out-of-sample window.",
+      "required_count": 61,
+      "status": "unavailable",
+      "window_returns": 20
+    },
+    {
+      "estimand": "cross-benchmark tracking effectiveness",
+      "gpu_model": "H100",
+      "observed_count": 1,
+      "reason": "Cross-benchmark tracking requires at least 61 matched levels so a 20-return coefficient can be applied to a non-trivial out-of-sample window.",
+      "required_count": 61,
+      "status": "unavailable",
+      "window_returns": 20
+    }
+  ],
+  "status": "unavailable"
+}

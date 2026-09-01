@@ -13,7 +13,12 @@
       "rental_type": "on_demand",
       "provider_weighting": null,
       "dated_break_register": false,
-      "source_ids": ["ornn-h100-2026-08-29"],
+      "source_ids": [
+        "ornn-a100-2026-08-29",
+        "ornn-b200-2026-08-29",
+        "ornn-h100-2026-08-29",
+        "ornn-h200-2026-08-29"
+      ],
       "notes": "Percentile thresholds and contributor coverage are not disclosed in the archived evidence."
     },
     {

@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "sources": [
     {
       "source_id": "silicondata-portal-2026-08-29",
@@ -7,9 +7,12 @@
       "artifact": "Authenticated Basic-tier portal capture",
       "retrieved_on": "2026-08-29",
       "upstream_uri": "https://portal.silicondata.com/silicon-index",
-      "archive_path": "parent:data/snapshots/silicondata-portal/2026-08-29.json",
-      "sha256": "588ed1a4635741e8a15bafcd33a63c78b092478702eba47032b540d73a8d6977",
-      "limitations": "Rendered values are rounded to two decimals and expose only a trailing seven-day window."
+      "source_record_locator": "GPU index table as displayed on 2026-08-29",
+      "provenance_fingerprint": "588ed1a4635741e8a15bafcd33a63c78b092478702eba47032b540d73a8d6977",
+      "raw_artifact_redistributed": false,
+      "redistribution_status": "metadata_and_normalized_derived_records_only",
+      "upstream_rights": "retained_by_publisher",
+      "limitations": "Rendered values are rounded to two decimals and expose only a trailing seven-day window. The fingerprint identifies a private source capture and cannot be independently verified from this repository."
     },
     {
       "source_id": "ornn-a100-2026-08-29",
@@ -17,9 +20,12 @@
       "artifact": "A100 SXM4 index-history snapshot",
       "retrieved_on": "2026-08-29",
       "upstream_uri": "https://api.ornnai.com/api/gpu/A100%20SXM4/index-history",
-      "archive_path": "parent:data/snapshots/ornn/a100-sxm4/2026-08-29.json",
-      "sha256": "f579705720c41a68775cead73c3b2b403f7397da5ed40fb0b124794aee93d0d3",
-      "limitations": "Public endpoint is clamped to a rolling three-month window."
+      "source_record_locator": "timestamp=2026-08-28T20:00:00.000Z",
+      "provenance_fingerprint": "f579705720c41a68775cead73c3b2b403f7397da5ed40fb0b124794aee93d0d3",
+      "raw_artifact_redistributed": false,
+      "redistribution_status": "metadata_and_normalized_derived_records_only",
+      "upstream_rights": "retained_by_publisher",
+      "limitations": "The public endpoint is clamped to a rolling three-month window. The fingerprint identifies a private source capture and is not an independently verifiable integrity check here."
     },
     {
       "source_id": "ornn-b200-2026-08-29",
@@ -27,9 +33,12 @@
       "artifact": "B200 index-history snapshot",
       "retrieved_on": "2026-08-29",
       "upstream_uri": "https://api.ornnai.com/api/gpu/B200/index-history",
-      "archive_path": "parent:data/snapshots/ornn/b200/2026-08-29.json",
-      "sha256": "a6392f63f68cc0842f72c9b8f57a6a062aa321049b1d65a1438f57c08bba8de7",
-      "limitations": "Public endpoint is clamped to a rolling three-month window."
+      "source_record_locator": "timestamp=2026-08-28T20:00:00.000Z",
+      "provenance_fingerprint": "a6392f63f68cc0842f72c9b8f57a6a062aa321049b1d65a1438f57c08bba8de7",
+      "raw_artifact_redistributed": false,
+      "redistribution_status": "metadata_and_normalized_derived_records_only",
+      "upstream_rights": "retained_by_publisher",
+      "limitations": "The public endpoint is clamped to a rolling three-month window. The fingerprint identifies a private source capture and is not an independently verifiable integrity check here."
     },
     {
       "source_id": "ornn-h100-2026-08-29",
@@ -37,9 +46,12 @@
       "artifact": "H100 SXM index-history snapshot",
       "retrieved_on": "2026-08-29",
       "upstream_uri": "https://api.ornnai.com/api/gpu/H100%20SXM/index-history",
-      "archive_path": "parent:data/snapshots/ornn/h100-sxm/2026-08-29.json",
-      "sha256": "7f4f3f1cc5fe5692e6dbb32d43d5335071a3cd8e44b676bb495d22328253f10c",
-      "limitations": "Public endpoint is clamped to a rolling three-month window."
+      "source_record_locator": "timestamp=2026-08-28T20:00:00.000Z",
+      "provenance_fingerprint": "7f4f3f1cc5fe5692e6dbb32d43d5335071a3cd8e44b676bb495d22328253f10c",
+      "raw_artifact_redistributed": false,
+      "redistribution_status": "metadata_and_normalized_derived_records_only",
+      "upstream_rights": "retained_by_publisher",
+      "limitations": "The public endpoint is clamped to a rolling three-month window. The fingerprint identifies a private source capture and is not an independently verifiable integrity check here."
     },
     {
       "source_id": "ornn-h200-2026-08-29",
@@ -47,19 +59,25 @@
       "artifact": "H200 index-history snapshot",
       "retrieved_on": "2026-08-29",
       "upstream_uri": "https://api.ornnai.com/api/gpu/H200/index-history",
-      "archive_path": "parent:data/snapshots/ornn/h200/2026-08-29.json",
-      "sha256": "33c521030206f5cca01edc6cbd4f9cb1eeb32017e4c9337f9f61ff6e80c5e0ff",
-      "limitations": "Public endpoint is clamped to a rolling three-month window."
+      "source_record_locator": "timestamp=2026-08-28T20:00:00.000Z",
+      "provenance_fingerprint": "33c521030206f5cca01edc6cbd4f9cb1eeb32017e4c9337f9f61ff6e80c5e0ff",
+      "raw_artifact_redistributed": false,
+      "redistribution_status": "metadata_and_normalized_derived_records_only",
+      "upstream_rights": "retained_by_publisher",
+      "limitations": "The public endpoint is clamped to a rolling three-month window. The fingerprint identifies a private source capture and is not an independently verifiable integrity check here."
     },
     {
       "source_id": "silicondata-break-register-2026-08-29",
       "publisher": "Silicon Data",
-      "artifact": "Parsed GPU index announcement register",
+      "artifact": "Normalized GPU index announcement register",
       "retrieved_on": "2026-08-29",
       "upstream_uri": "https://docs.silicondata.com/products/gpu-index-announcements.md",
-      "archive_path": "parent:outputs/break-calendar.json",
-      "sha256": "6534b2d94c71f1ce0aa4da7feab734d7fd169f23c14e088004bc7336964c4397",
-      "limitations": "Impact ranges are publisher estimates; one historical jump is unquantified."
+      "source_record_locator": "dated GPU index announcement entries through 2026-08-29",
+      "provenance_fingerprint": "6534b2d94c71f1ce0aa4da7feab734d7fd169f23c14e088004bc7336964c4397",
+      "raw_artifact_redistributed": false,
+      "redistribution_status": "metadata_and_normalized_derived_records_only",
+      "upstream_rights": "retained_by_publisher",
+      "limitations": "Impact ranges are publisher estimates; one historical jump is unquantified. The fingerprint identifies a private normalized source capture."
     }
   ]
 }

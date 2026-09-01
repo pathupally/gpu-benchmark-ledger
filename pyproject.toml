@@ -3,13 +3,13 @@ requires = ["setuptools>=69"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "benchmark-ledger"
-version = "0.1.0"
-description = "A vintage-preserving ledger for compute benchmark basis"
+name = "compute-benchmark-ledger"
+version = "1.0.0"
+description = "Vintage-aware comparability and tracking analysis for compute benchmarks"
 readme = "README.md"
 requires-python = ">=3.11"
 license = {text = "MIT"}
-authors = [{name = "Compute Futures Research"}]
+authors = [{name = "Adrian Mathew"}]
 dependencies = []
 
 [project.scripts]
@@ -20,4 +20,3 @@ package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
-

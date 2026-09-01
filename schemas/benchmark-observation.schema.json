@@ -13,6 +13,7 @@
     "observation_date",
     "value",
     "unit",
+    "statistic",
     "value_precision",
     "dimensions",
     "methodology_version",
@@ -29,6 +30,7 @@
     "observation_date": {"type": "string", "format": "date"},
     "value": {"type": "number", "exclusiveMinimum": 0},
     "unit": {"const": "USD_per_GPU_hour"},
+    "statistic": {"const": "spot_index"},
     "value_precision": {"type": "integer", "minimum": 0, "maximum": 8},
     "dimensions": {
       "type": "object",
@@ -62,4 +64,3 @@
     "notes": {"type": "string"}
   }
 }
-
