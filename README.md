@@ -1,8 +1,15 @@
 # Compute Benchmark Ledger
 
+[![ci](https://github.com/pathupally/gpu-benchmark-ledger/actions/workflows/ci.yml/badge.svg)](https://github.com/pathupally/gpu-benchmark-ledger/actions/workflows/ci.yml)
+
 A vintage-aware measurement system for deciding whether two compute-price
 benchmarks are economically comparable before they are used in settlement or
 tracking analysis.
+
+**Read the note:**
+[One GPU, Two Settlement Prices](docs/paper/one-gpu-two-settlement-prices.md).
+**Browse the data:** an interactive dashboard ships in `web/`; `make serve`
+opens it locally.
 
 The current release reproduces one cross-section, dated 2026-08-29. It does not
 invent a time series, label benchmark disagreement as arbitrage, or report an
@@ -57,6 +64,24 @@ PYTHONPATH=src python3 -m benchmark_ledger hedge
 The equivalent installed commands are `benchmark-ledger validate`, `build`,
 `basis`, and `hedge`. Unavailable analyses return structured `status`, `reason`,
 `observed_count`, and `required_count` fields without placeholder estimates.
+
+### Dashboard
+
+```sh
+make serve
+```
+
+Builds the artifacts and serves the dashboard at
+`http://127.0.0.1:8000/web/`.
+
+`web/` presents the same generated records the CLI emits: the basis
+cross-section, matched-observation coverage against each withholding gate, and
+the methodology break ledger. There is no build step, no framework, and no
+network call at any point -- `make build` writes `web/data.generated.js`, and
+the page reads that single global. `tests/test_web.py` holds the page to a
+contract: every asset it references resolves locally, the generated data loads
+before the application script, DOM ids are unique, and the keyboard, focus,
+reduced-motion, and responsive behaviours are present.
 
 ## Versioned research contract
 
