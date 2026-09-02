@@ -8,8 +8,9 @@ tracking analysis.
 
 **Read the note:**
 [One GPU, Two Settlement Prices](docs/paper/one-gpu-two-settlement-prices.md).
-**Browse the data:** an interactive dashboard ships in `web/`; `make serve`
-opens it locally.
+**Browse the data:**
+[live dashboard](https://pathupally.github.io/gpu-benchmark-ledger/) --
+the same page also runs fully offline via `make serve`.
 
 The current release reproduces one cross-section, dated 2026-08-29. It does not
 invent a time series, label benchmark disagreement as arbitrage, or report an
@@ -72,7 +73,10 @@ make serve
 ```
 
 Builds the artifacts and serves the dashboard at
-`http://127.0.0.1:8000/web/`.
+`http://127.0.0.1:8000/web/`. The same directory is deployed to
+[GitHub Pages](https://pathupally.github.io/gpu-benchmark-ledger/) by
+`.github/workflows/pages.yml`, which regenerates the data from the source
+records before publishing.
 
 `web/` presents the same generated records the CLI emits: the basis
 cross-section, matched-observation coverage against each withholding gate, and
