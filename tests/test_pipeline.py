@@ -20,7 +20,7 @@ class PipelineTests(unittest.TestCase):
         self.by_gpu = {pair["gpu_model"]: pair for pair in self.analysis["pairs"]}
 
     def test_documented_cross_section_is_reproduced(self) -> None:
-        expected = {"H100": 10.6, "A100": -24.8, "B200": 7.7, "H200": 38.2}
+        expected = {"H100": 8.3, "A100": -36.0, "B200": 8.6, "H200": 36.6}
         actual = {gpu: round(pair["basis"]["raw_pct"], 1) for gpu, pair in self.by_gpu.items()}
         self.assertEqual(actual, expected)
         self.assertTrue(self.analysis["headline"]["sign_reversal_present"])
@@ -30,10 +30,10 @@ class PipelineTests(unittest.TestCase):
         b200 = self.by_gpu["B200"]["basis"]["break_sensitivity"]
         self.assertEqual([event["event_id"] for event in h100["applied_breaks"]], ["sd-260325-1"])
         self.assertEqual([event["event_id"] for event in b200["applied_breaks"]], ["sd-260630-1"])
-        self.assertAlmostEqual(h100["adjusted_pct_low"], 2.82641509)
-        self.assertAlmostEqual(h100["adjusted_pct_high"], 7.2490566)
-        self.assertAlmostEqual(b200["adjusted_pct_low"], 1.2437276)
-        self.assertAlmostEqual(b200["adjusted_pct_high"], 7.70609319)
+        self.assertAlmostEqual(h100["adjusted_pct_low"], 0.72075472)
+        self.assertAlmostEqual(h100["adjusted_pct_high"], 5.05283019)
+        self.assertAlmostEqual(b200["adjusted_pct_low"], 2.08602151)
+        self.assertAlmostEqual(b200["adjusted_pct_high"], 8.60215054)
         self.assertIn("sd-251203-1", h100["restated_break_ids_excluded"])
 
     def test_unquantified_break_remains_visible(self) -> None:

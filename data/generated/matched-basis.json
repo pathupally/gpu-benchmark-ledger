@@ -4,10 +4,10 @@
       "analysis_eligible": false,
       "basis": {
         "break_sensitivity": {
-          "adjusted_log_high": -0.28561382,
-          "adjusted_log_low": -0.28561382,
-          "adjusted_pct_high": -24.8447205,
-          "adjusted_pct_low": -24.8447205,
+          "adjusted_log_high": -0.44667538,
+          "adjusted_log_low": -0.44667538,
+          "adjusted_pct_high": -36.02484472,
+          "adjusted_pct_low": -36.02484472,
           "applied_breaks": [],
           "is_fully_bounded": false,
           "restated_break_ids_excluded": [
@@ -20,8 +20,8 @@
           ]
         },
         "orientation": "Ornn relative to Silicon Data",
-        "raw_log": -0.28561382,
-        "raw_pct": -24.8447205
+        "raw_log": -0.44667538,
+        "raw_pct": -36.02484472
       },
       "comparison_class": "approximate",
       "confidence_grade": "D",
@@ -93,7 +93,7 @@
         "source_id": "ornn-a100-2026-08-29",
         "statistic": "spot_index",
         "ticker": null,
-        "value": 1.21
+        "value": 1.03
       },
       "pair_id": "pair-a100-2026-08-29",
       "rationale": "The sign reversal is diagnostically important, but unknown 40GB/80GB memory and Silicon Data's undisclosed benchmark-equivalent contract prevent a defensible deliverable match.",
@@ -120,10 +120,10 @@
       "analysis_eligible": true,
       "basis": {
         "break_sensitivity": {
-          "adjusted_log_high": 0.07423597,
-          "adjusted_log_low": 0.01236057,
-          "adjusted_pct_high": 7.70609319,
-          "adjusted_pct_low": 1.2437276,
+          "adjusted_log_high": 0.08252102,
+          "adjusted_log_low": 0.02064562,
+          "adjusted_pct_high": 8.60215054,
+          "adjusted_pct_low": 2.08602151,
           "applied_breaks": [
             {
               "benchmark_id": "SDB200RT",
@@ -139,8 +139,8 @@
           "unquantified_break_ids": []
         },
         "orientation": "Ornn relative to Silicon Data",
-        "raw_log": 0.07423597,
-        "raw_pct": 7.70609319
+        "raw_log": 0.08252102,
+        "raw_pct": 8.60215054
       },
       "comparison_class": "mapped",
       "confidence_grade": "C",
@@ -212,7 +212,7 @@
         "source_id": "ornn-b200-2026-08-29",
         "statistic": "spot_index",
         "ticker": null,
-        "value": 6.01
+        "value": 6.06
       },
       "pair_id": "pair-b200-2026-08-29",
       "rationale": "The model family, date, and unit align. Tier, contract mix, and contributor coverage remain incompletely disclosed.",
@@ -239,10 +239,10 @@
       "analysis_eligible": true,
       "basis": {
         "break_sensitivity": {
-          "adjusted_log_high": 0.06998358,
-          "adjusted_log_low": 0.02787209,
-          "adjusted_pct_high": 7.2490566,
-          "adjusted_pct_low": 2.82641509,
+          "adjusted_log_high": 0.04929318,
+          "adjusted_log_low": 0.0071817,
+          "adjusted_pct_high": 5.05283019,
+          "adjusted_pct_low": 0.72075472,
           "applied_breaks": [
             {
               "benchmark_id": "SDH100RT",
@@ -262,8 +262,8 @@
           ]
         },
         "orientation": "Ornn relative to Silicon Data",
-        "raw_log": 0.10044278,
-        "raw_pct": 10.56603774
+        "raw_log": 0.07975239,
+        "raw_pct": 8.30188679
       },
       "comparison_class": "mapped",
       "confidence_grade": "C",
@@ -335,7 +335,7 @@
         "source_id": "ornn-h100-2026-08-29",
         "statistic": "spot_index",
         "ticker": null,
-        "value": 2.93
+        "value": 2.87
       },
       "pair_id": "pair-h100-2026-08-29",
       "rationale": "The model family, date, unit, and rental market are aligned. Ornn specifies SXM and on-demand inputs; Silicon Data does not disclose form factor and blends rental types.",
@@ -362,10 +362,10 @@
       "analysis_eligible": false,
       "basis": {
         "break_sensitivity": {
-          "adjusted_log_high": 0.32319771,
-          "adjusted_log_low": 0.32319771,
-          "adjusted_pct_high": 38.15384615,
-          "adjusted_pct_low": 38.15384615,
+          "adjusted_log_high": 0.31199938,
+          "adjusted_log_low": 0.31199938,
+          "adjusted_pct_high": 36.61538462,
+          "adjusted_pct_low": 36.61538462,
           "applied_breaks": [],
           "is_fully_bounded": true,
           "restated_break_ids_excluded": [],
@@ -374,8 +374,8 @@
           "unquantified_break_ids": []
         },
         "orientation": "Ornn relative to Silicon Data",
-        "raw_log": 0.32319771,
-        "raw_pct": 38.15384615
+        "raw_log": 0.31199938,
+        "raw_pct": 36.61538462
       },
       "comparison_class": "approximate",
       "confidence_grade": "D",
@@ -447,10 +447,10 @@
         "source_id": "ornn-h200-2026-08-29",
         "statistic": "spot_index",
         "ticker": null,
-        "value": 4.49
+        "value": 4.44
       },
       "pair_id": "pair-h200-2026-08-29",
-      "rationale": "The captured Silicon Data H200 record omits both tier and ticker, so the 38.2% difference is a diagnostic comparison rather than a matched deliverable.",
+      "rationale": "The captured Silicon Data H200 record omits both tier and ticker, so the 36.6% difference is a diagnostic comparison rather than a matched deliverable.",
       "silicon_data": {
         "benchmark_id": "SD-H200-NEOCLOUD",
         "dimensions": {

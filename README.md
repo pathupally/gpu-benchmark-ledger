@@ -12,10 +12,10 @@ underpowered hedge statistic.
 
 | GPU | Silicon Data | Ornn | Ornn vs. SD | Match | Permitted use |
 | --- | ---: | ---: | ---: | --- | --- |
-| H100 | $2.65 | $2.93 | +10.6% | Mapped / C | Eligible with caveats |
-| A100 | $1.61 | $1.21 | -24.8% | Approximate / D | Diagnostic only |
-| B200 | $5.58 | $6.01 | +7.7% | Mapped / C | Eligible with caveats |
-| H200 | $3.25 | $4.49 | +38.2% | Approximate / D | Diagnostic only |
+| H100 | $2.65 | $2.87 | +8.3% | Mapped / C | Eligible with caveats |
+| A100 | $1.61 | $1.03 | -36.0% | Approximate / D | Diagnostic only |
+| B200 | $5.58 | $6.06 | +8.6% | Mapped / C | Eligible with caveats |
+| H200 | $3.25 | $4.44 | +36.6% | Approximate / D | Diagnostic only |
 
 H100 and B200 align on model, date, unit, and broad rental market, but still
 carry specification uncertainty. A100 and H200 omit material dimensions and

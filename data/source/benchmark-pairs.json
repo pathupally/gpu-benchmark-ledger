@@ -70,7 +70,7 @@
       "comparison_class": "approximate",
       "confidence_grade": "D",
       "analysis_eligible": false,
-      "rationale": "The captured Silicon Data H200 record omits both tier and ticker, so the 38.2% difference is a diagnostic comparison rather than a matched deliverable.",
+      "rationale": "The captured Silicon Data H200 record omits both tier and ticker, so the 36.6% difference is a diagnostic comparison rather than a matched deliverable.",
       "dimension_assessments": [
         {"dimension": "gpu_model", "status": "match", "ornn": "H200", "silicon_data": "H200"},
         {"dimension": "memory_gb", "status": "unknown", "ornn": null, "silicon_data": null},

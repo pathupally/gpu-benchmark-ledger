@@ -4,7 +4,7 @@
 
 ### Abstract
 
-Cash-settled compute contracts can name the same GPU family while settling to materially different benchmark values. On 2026-08-29, Ornn was 10.6% above Silicon Data for H100, 7.7% above for B200, and 38.2% above for H200, but 24.8% below for A100. The sign reversal rejects a single constant vendor markup as a complete explanation. It does not prove that the benchmarks measure distinct tradable markets: the public record leaves important deliverable characteristics unknown. This note introduces a vintage ledger that keeps each value attached to its source hash, methodology version, specification coverage, match class, restatement status, and published break range.
+Cash-settled compute contracts can name the same GPU family while settling to materially different benchmark values. On 2026-08-29, Ornn was 8.3% above Silicon Data for H100, 8.6% above for B200, and 36.6% above for H200, but 36.0% below for A100. The sign reversal rejects a single constant vendor markup as a complete explanation. It does not prove that the benchmarks measure distinct tradable markets: the public record leaves important deliverable characteristics unknown. This note introduces a vintage ledger that keeps each value attached to its source hash, methodology version, specification coverage, match class, restatement status, and published break range.
 
 ## 1. The object being measured
 
@@ -18,10 +18,10 @@ The percentage figures below use `I_Ornn / I_SD - 1`, which is easier to read bu
 
 | GPU | Silicon Data | Ornn | Log basis | Percentage basis | Classification |
 | --- | ---: | ---: | ---: | ---: | --- |
-| H100 | 2.65 | 2.93 | 0.1004 | +10.6% | Mapped, grade C |
-| A100 | 1.61 | 1.21 | −0.2856 | −24.8% | Approximate, grade D |
-| B200 | 5.58 | 6.01 | 0.0742 | +7.7% | Mapped, grade C |
-| H200 | 3.25 | 4.49 | 0.3232 | +38.2% | Approximate, grade D |
+| H100 | 2.65 | 2.87 | 0.0798 | +8.3% | Mapped, grade C |
+| A100 | 1.61 | 1.03 | −0.4467 | −36.0% | Approximate, grade D |
+| B200 | 5.58 | 6.06 | 0.0825 | +8.6% | Mapped, grade C |
+| H200 | 3.25 | 4.44 | 0.3120 | +36.6% | Approximate, grade D |
 
 These are benchmark disagreements, not executable spreads. The instruments are cash-settled and do not share a deliverable that forces convergence.
 
@@ -50,10 +50,10 @@ The two endpoints of each published range are carried separately.
 
 | GPU | Raw basis | Break-adjusted range | Applied event | Bound status |
 | --- | ---: | ---: | --- | --- |
-| H100 | +10.6% | +2.8% to +7.2% | 2026-04-06 provider change, −7% to −3% | Partial; a 2025 coverage jump is unquantified |
-| B200 | +7.7% | +1.2% to +7.7% | 2026-07-15 provider change, −6% to 0% | Bounded by published quantified events |
-| A100 | −24.8% | No numerical range | 2025 coverage jump unquantified | Unbounded |
-| H200 | +38.2% | No applicable quantified break | Index history begins after the 2025 jump | No adjustment |
+| H100 | +8.3% | +0.7% to +5.1% | 2026-04-06 provider change, −7% to −3% | Partial; a 2025 coverage jump is unquantified |
+| B200 | +8.6% | +2.1% to +8.6% | 2026-07-15 provider change, −6% to 0% | Bounded by published quantified events |
+| A100 | −36.0% | No numerical range | 2025 coverage jump unquantified | Unbounded |
+| H200 | +36.6% | No applicable quantified break | Index history begins after the 2025 jump | No adjustment |
 
 The 2025-12-04 methodology change is preserved in the ledger but excluded from this non-restated sensitivity calculation because Silicon Data marked it restated to the series start. Its opposite impacts—A100 up 35% to 40%, H100 down 6% to 4%—still demonstrate why a vintage must be stored at the ticker level.
 
